@@ -1,6 +1,9 @@
 # root dir ignores
 */bin
-*/src-gen/*
+*/include
+*/src
+/.metadata/
+
 
 # file types
 *.sconsign.dblite
