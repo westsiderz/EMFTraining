@@ -1,0 +1,19 @@
+«REM»
+Name:          MainTemplate.xpt 
+Description:   This template is the entry point for the code generation process
+
+Creation Date: 8/23/2020
+Created By:    Ahmed Karairbahimov
+Last Update:   8/23/2020
+Updated By:    Ahmed Karaibrahimov
+«ENDREM»
+
+«IMPORT ecore»
+
+«DEFINE Main FOR EPackage»
+	«FOREACH this.eClassifiers AS classifier»
+		«EXPAND templates::HeaderTemplate::CreateHeaderFile FOR (EClass)classifier»
+		
+		«EXPAND templates::SourceTemplate::CreateSourceFile FOR (EClass)classifier»
+	«ENDFOREACH»
+«ENDDEFINE»

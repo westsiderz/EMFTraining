@@ -1,0 +1,14 @@
+# root dir ignores
+*/bin
+*/src-gen/*
+
+# file types
+*.sconsign.dblite
+*.pyc
+*.avi
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.zip
+*.class

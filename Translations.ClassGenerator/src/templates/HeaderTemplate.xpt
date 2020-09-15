@@ -1,0 +1,140 @@
+«REM»
+Name:          HeaderTemplate.xpt 
+Description:   This template is used to generate header files for the classes
+
+Creation Date: 2/19/2020
+Created By:    Ahmed Karairbahimov
+Last Update:   2/19/2020
+Updated By:    Ahmed Karaibrahimov
+«ENDREM»
+
+«IMPORT ecore»
+
+
+«DEFINE CreateHeaderFile FOR EClass»
+	«FILE "include/" + name + ".hpp"»
+		//================================================================================================================
+		// Copyright <2020> <Ahmed Karaibrahimov>
+
+		// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+		// and associated documentation files (the "Software"), to deal in the Software without restriction, 
+		// including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+		// and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, 
+		// subject to the following conditions:
+
+		// The above copyright notice and this permission notice shall be included in all copies or substantial 
+		// portions of the Software.
+
+		// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
+		// TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+		// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+		// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+		// OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+		//================================================================================================================
+		
+		#ifndef XQ_GEN_«name.toUpperCase()»_HPP
+		#define XQ_GEN_«name.toUpperCase()»_HPP
+		
+		#include <vector>
+		
+		«EXPAND GenerateNamespace(true) FOR this»
+		
+		class «name»
+		{
+		public: 
+			// Default constructor
+			«name»() = default;
+			
+			// Argumented constructor
+			«name»(«EXPAND GetAllConstructorArguments FOR this»);
+			
+			// Default destructor
+			virtual ~«name»() = default;
+			
+			// Getters and Setters
+			«EXPAND CreateAllGettersAndSetters FOR this»
+			
+		private:
+			// Member variables
+			«EXPAND CreateAllMemberVariables FOR this»
+		}
+		
+		«EXPAND GenerateNamespace(false) FOR this»
+		  
+		#endif // XQ_GEN_«name.toUpperCase()»_HPP
+	«ENDFILE»
+«ENDDEFINE»
+
+«REM»Genarates the namespaces«ENDREM»
+«DEFINE GenerateNamespace(Boolean isOpening) FOR EClass»
+	«IF isOpening»
+		namespace XQ 
+		{
+			namespace GEN 
+			{
+	«ELSE»
+			} // GEN
+		} // XQ
+	«ENDIF»
+«ENDDEFINE»
+
+«REM»List all the constructor arguments«ENDREM»
+«DEFINE GetAllConstructorArguments FOR EClass»
+	«FOREACH this.eAllAttributes AS attribute ITERATOR iter»
+		«IF attribute.upperBound == -1»std::vector<«ENDIF»
+		«attribute.eType.name»
+		«IF attribute.upperBound == -1»>«ENDIF» 
+		«attribute.name»«IF iter.counter1 < this.eAttributes.size»,«ENDIF»
+	«ENDFOREACH»
+	«IF eAllAttributes.size > 0 && eAllReferences.size > 0»,«ENDIF»
+	«FOREACH this.eAllReferences AS reference ITERATOR iter»
+		«IF reference.upperBound == -1»std::vector<«ENDIF»
+		«reference.eType.name»
+		«IF reference.upperBound == -1»>«ENDIF»
+		«reference.name»«IF iter.counter1 < this.eAllReferences.size»,«ENDIF»
+	«ENDFOREACH»
+«ENDDEFINE»
+
+«REM»Generate all the getters and setters«ENDREM»
+«DEFINE CreateAllGettersAndSetters FOR EClass»
+	«FOREACH this.eAllAttributes AS attribute»
+		«IF attribute.upperBound == -1»std::vector<«ENDIF»
+		«attribute.eType.name» 
+		«IF attribute.upperBound == -1»>«ENDIF»
+		get«attribute.name»() const;
+		
+		void set«attribute.name»(
+		«IF attribute.upperBound == -1»std::vector<«ENDIF»
+		«attribute.eType.name» 
+		«IF attribute.upperBound == -1»>«ENDIF» 
+		value);
+	«ENDFOREACH»
+	«FOREACH this.eAllReferences AS reference»
+		«IF reference.upperBound == -1»std::vector<«ENDIF»
+		«reference.eType.name» 
+		«IF reference.upperBound == -1»>«ENDIF»
+		get«reference.name»() const;
+		
+		void set«reference.name»(
+		«IF reference.upperBound == -1»std::vector<«ENDIF»
+		«reference.eType.name» 
+		«IF reference.upperBound == -1»>«ENDIF»
+		value);
+	«ENDFOREACH»
+«ENDDEFINE»
+
+«REM»Generate all the member variables«ENDREM»
+«DEFINE CreateAllMemberVariables FOR EClass»
+	«FOREACH this.eAllAttributes AS attribute»
+		«IF attribute.upperBound == -1»std::vector<«ENDIF»
+		«attribute.eType.name» 
+		«IF attribute.upperBound == -1»>«ENDIF» 
+		m_«attribute.name»;
+	«ENDFOREACH»
+	«FOREACH this.eAllReferences AS reference»
+		«IF reference.upperBound == -1»std::vector<«ENDIF»
+		«reference.eType.name» 
+		«IF reference.upperBound == -1»>«ENDIF»
+		m_«reference.name»;
+	«ENDFOREACH»
+«ENDDEFINE»
