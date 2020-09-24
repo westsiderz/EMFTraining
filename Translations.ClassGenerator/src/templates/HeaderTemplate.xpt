@@ -10,6 +10,8 @@ Updated By:    Ahmed Karaibrahimov
 
 «IMPORT ecore»
 
+«EXTENSION extensions::Misc»
+
 
 «DEFINE CreateHeaderFile FOR EClass»
 	«FILE "include/" + name + ".hpp"»
@@ -81,60 +83,34 @@ Updated By:    Ahmed Karaibrahimov
 «REM»List all the constructor arguments«ENDREM»
 «DEFINE GetAllConstructorArguments FOR EClass»
 	«FOREACH this.eAllAttributes AS attribute ITERATOR iter»
-		«IF attribute.upperBound == -1»std::vector<«ENDIF»
-		«attribute.eType.name»
-		«IF attribute.upperBound == -1»>«ENDIF» 
-		«attribute.name»«IF iter.counter1 < this.eAttributes.size»,«ENDIF»
+		«attribute.getType()» «attribute.name»«IF iter.counter1 < this.eAttributes.size»,«ENDIF»
 	«ENDFOREACH»
 	«IF eAllAttributes.size > 0 && eAllReferences.size > 0»,«ENDIF»
 	«FOREACH this.eAllReferences AS reference ITERATOR iter»
-		«IF reference.upperBound == -1»std::vector<«ENDIF»
-		«reference.eType.name»
-		«IF reference.upperBound == -1»>«ENDIF»
-		«reference.name»«IF iter.counter1 < this.eAllReferences.size»,«ENDIF»
+		«reference.getType()» «reference.name»«IF iter.counter1 < this.eAllReferences.size»,«ENDIF»
 	«ENDFOREACH»
 «ENDDEFINE»
 
 «REM»Generate all the getters and setters«ENDREM»
 «DEFINE CreateAllGettersAndSetters FOR EClass»
 	«FOREACH this.eAllAttributes AS attribute»
-		«IF attribute.upperBound == -1»std::vector<«ENDIF»
-		«attribute.eType.name» 
-		«IF attribute.upperBound == -1»>«ENDIF»
-		get«attribute.name»() const;
+		«attribute.getType()» get«attribute.name»() const;
 		
-		void set«attribute.name»(
-		«IF attribute.upperBound == -1»std::vector<«ENDIF»
-		«attribute.eType.name» 
-		«IF attribute.upperBound == -1»>«ENDIF» 
-		value);
+		void set«attribute.name»(«attribute.getType()» value);
 	«ENDFOREACH»
 	«FOREACH this.eAllReferences AS reference»
-		«IF reference.upperBound == -1»std::vector<«ENDIF»
-		«reference.eType.name» 
-		«IF reference.upperBound == -1»>«ENDIF»
-		get«reference.name»() const;
+		«reference.getType()» get«reference.name»() const;
 		
-		void set«reference.name»(
-		«IF reference.upperBound == -1»std::vector<«ENDIF»
-		«reference.eType.name» 
-		«IF reference.upperBound == -1»>«ENDIF»
-		value);
+		void set«reference.name»(«reference.getType()» value);
 	«ENDFOREACH»
 «ENDDEFINE»
 
 «REM»Generate all the member variables«ENDREM»
 «DEFINE CreateAllMemberVariables FOR EClass»
 	«FOREACH this.eAllAttributes AS attribute»
-		«IF attribute.upperBound == -1»std::vector<«ENDIF»
-		«attribute.eType.name» 
-		«IF attribute.upperBound == -1»>«ENDIF» 
-		m_«attribute.name»;
+		«attribute.getType()» m_«attribute.name»;
 	«ENDFOREACH»
 	«FOREACH this.eAllReferences AS reference»
-		«IF reference.upperBound == -1»std::vector<«ENDIF»
-		«reference.eType.name» 
-		«IF reference.upperBound == -1»>«ENDIF»
-		m_«reference.name»;
+		«reference.getType()» m_«reference.name»;
 	«ENDFOREACH»
 «ENDDEFINE»

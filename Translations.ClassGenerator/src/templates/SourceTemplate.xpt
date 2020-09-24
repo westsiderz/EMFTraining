@@ -10,6 +10,7 @@ Updated By:    Ahmed Karaibrahimov
 
 «IMPORT ecore»
 
+«EXTENSION extensions::Misc»
 
 «DEFINE CreateSourceFile FOR EClass»
 	«FILE "src/" + name + ".cpp"»
@@ -64,37 +65,23 @@ Updated By:    Ahmed Karaibrahimov
 «REM»Generate all the getters and setters implementations«ENDREM»
 «DEFINE CreateAllGettersAndSettersImplementation FOR EClass»
 	«FOREACH this.eAllAttributes AS attribute»
-		«IF attribute.upperBound == -1»std::vector<«ENDIF»
-		«attribute.eType.name» 
-		«IF attribute.upperBound == -1»>«ENDIF»
-		«name»::get«attribute.name»() const
+		«attribute.getType()» «name»::get«attribute.name»() const
 		{
 			return m_«attribute.name»;
 		}
 		
-		void «name»::set«attribute.name»(
-		«IF attribute.upperBound == -1»std::vector<«ENDIF»
-		«attribute.eType.name» 
-		«IF attribute.upperBound == -1»>«ENDIF» 
-		value)
+		void «name»::set«attribute.name»«attribute.getType()» value)
 		{
 			m_«attribute.name» = value;
 		}
 	«ENDFOREACH»
 	«FOREACH this.eAllReferences AS reference»
-		«IF reference.upperBound == -1»std::vector<«ENDIF»
-		«reference.eType.name» 
-		«IF reference.upperBound == -1»>«ENDIF»
-		«name»::get«reference.name»() const
+		«reference.getType()» «name»::get«reference.name»() const
 		{
 			return m_«reference.name»;
 		}
 		
-		void «name»::set«reference.name»(
-		«IF reference.upperBound == -1»std::vector<«ENDIF»
-		«reference.eType.name» 
-		«IF reference.upperBound == -1»>«ENDIF»
-		value)
+		void «name»::set«reference.name»(«reference.getType()» value)
 		{
 			m_«reference.name» = value;
 		}
