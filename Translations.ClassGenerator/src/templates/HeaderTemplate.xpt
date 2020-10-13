@@ -2,9 +2,9 @@
 Name:          HeaderTemplate.xpt 
 Description:   This template is used to generate header files for the classes
 
-Creation Date: 2/19/2020
+Creation Date: 9/13/2020
 Created By:    Ahmed Karairbahimov
-Last Update:   2/19/2020
+Last Update:   9/13/2020
 Updated By:    Ahmed Karaibrahimov
 «ENDREM»
 
@@ -56,9 +56,19 @@ Updated By:    Ahmed Karaibrahimov
 			// Getters and Setters
 			«EXPAND CreateAllGettersAndSetters FOR this»
 			
+			«PROTECT CSTART "/*" CEND "*/" ID name + "AdditionalPublicMembersDeclarations" DISABLE»
+				// Add here additional class public members.
+				// Add ENABLED before START in order to activate this region
+			«ENDPROTECT»
+			
 		private:
 			// Member variables
 			«EXPAND CreateAllMemberVariables FOR this»
+			
+			«PROTECT CSTART "/*" CEND "*/" ID name + "AdditionalPrivateMembersDeclarations" DISABLE»
+				// Add here additional class private members.
+				// Add ENABLED before START in order to activate this region
+			«ENDPROTECT»
 		}
 		
 		«EXPAND GenerateNamespace(false) FOR this»

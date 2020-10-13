@@ -2,9 +2,9 @@
 Name:          SourceTemplate.xpt 
 Description:   This template is used to generate source files for the classes
 
-Creation Date: 2/21/2020
+Creation Date: 9/13/2020
 Created By:    Ahmed Karairbahimov
-Last Update:   2/21/2020
+Last Update:   9/13/2020
 Updated By:    Ahmed Karaibrahimov
 «ENDREM»
 
@@ -46,6 +46,11 @@ Updated By:    Ahmed Karaibrahimov
 		
 		// Getters and setters
 		«EXPAND CreateAllGettersAndSettersImplementation FOR this»
+		
+		«PROTECT CSTART "/*" CEND "*/" ID name + "AdditionalPublicMembersDefinitions" DISABLE»
+			// Add here additional class methods definitions.
+			// Add ENABLED before START in order to activate this region
+		«ENDPROTECT»
 		
 		«EXPAND templates::HeaderTemplate::GenerateNamespace(false) FOR this»	
 	«ENDFILE»

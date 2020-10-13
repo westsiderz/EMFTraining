@@ -1,7 +1,7 @@
 <workflow>
 	<property name="modelFile" value="platform:/resource/Translations/model/Translations.ecore" />
 	<property name="outputPath" value="src-gen" />
-	<property name="beautifierConfigFile" value="platform:/resource/Inputs/BeautificationRules.xml" />
+	<property name="beautifierConfigFile" value="C:\MyPrograms\eclipse-cpp-2019-12-R-win32-x86_64\eclipse\eclipse-workspace\EMFTraining\Inputs\BeautificationRules.xml" />
 	
 
 	<!-- Standart setup routine-->
@@ -29,5 +29,8 @@
     	<outlet path="${outputPath}">
     		<postprocessor class="org.eclipse.xpand.support.cdt.CppBeautifier" configFile="${beautifierConfigFile}"/>
     	</outlet>
+    	
+    	<!-- Path to the folder where the files are generated. Used when lookig for protected regions-->
+    	<prSrcPaths value="${outputPath}"/>
   	</component>	
 </workflow>
