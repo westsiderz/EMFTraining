@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Translations>
+	<TranslatedString name="app_file">File</TranslatedString>
+	<TranslatedString name="app_new_file">New</TranslatedString>
+	<TranslatedString name="app_open_file">Open File...</TranslatedString>
+	<TranslatedString name="app_close_file">Close</TranslatedString>
+	<TranslatedString name="app_edit">Edit</TranslatedString>
+	<TranslatedString name="app_cut">Cut</TranslatedString>
+	<TranslatedString name="app_copy">Copy</TranslatedString>
+	<TranslatedString name="app_paste">Paste</TranslatedString>
+	<TranslatedString name="app_find">Find</TranslatedString>
+	<TranslatedString name="app_replace">Replace</TranslatedString>
+	<TranslatedString name="app_help">Help</TranslatedString>
+	<TranslatedString name="app_about">About</TranslatedString>
+	<TranslatedString name="app_about">About You</TranslatedString>
+	<TranslatedString name="app_about1">About You@</TranslatedString>
+	<TranslatedString name="app_about2">About YouAbout YouAbout YouAbout YouAbout YouAbout YouAbout YouAbout YouAbout YouAbout YouAbout YouAbout YouAbout You</TranslatedString>
+</Translations>

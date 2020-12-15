@@ -1,0 +1,17 @@
+«REM»
+Name:          MainTemplate.xpt 
+Description:   This template is the entry point for the code generation process
+
+Creation Date: 10/08/2020
+Created By:    Ahmed Karairbahimov
+Last Update:   10/10/2020
+Updated By:    Ahmed Karaibrahimov
+«ENDREM»
+
+«IMPORT Translations»
+
+«DEFINE Main(String language) FOR DocumentRoot»
+	«EXPAND templates::HeaderTemplate::CreateHeaderFile(language) FOR this»
+		
+	«EXPAND templates::SourceTemplate::CreateSourceFile(language) FOR this»
+«ENDDEFINE»

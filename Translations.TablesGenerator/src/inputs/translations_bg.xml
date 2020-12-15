@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Translations>
+	<!--  <TranslatedString name="app_file">Файл</TranslatedString> -->
+	<TranslatedString name="app_new_file">Нов</TranslatedString>
+	<TranslatedString name="app_open_file">Отвори Файл...</TranslatedString>
+	<TranslatedString name="app_close_file">Затвори</TranslatedString>
+	<TranslatedString name="app_edit">Редактиране</TranslatedString>
+	<TranslatedString name="app_cut">Изрежи</TranslatedString>
+	<TranslatedString name="app_copy">Копирай</TranslatedString>
+	<TranslatedString name="app_paste">Постави</TranslatedString>
+	<TranslatedString name="app_find">Намери</TranslatedString>
+	<TranslatedString name="app_replace">Замести</TranslatedString>
+	<TranslatedString name="app_help">Помощ</TranslatedString>
+	<TranslatedString name="app_about">Относно</TranslatedString>
+</Translations>

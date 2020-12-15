@@ -1,0 +1,15 @@
+import Translations;
+
+context TranslatedStringType WARNING
+	"Translated value '" + value + "' too long!"  :
+	((String)value).length < 30;
+	
+context TranslatedStringType if ((String)value).length > 2 ERROR
+	"Translated value contains forbidden characters!" :
+	   !((String)value).contains("$") 
+	&& !((String)value).contains("&")
+	&& !((String)value).contains("@");
+	
+context TranslationsType WARNING
+	"Not all translation ids are unique!" :
+	translatedString.forAll(e1| translatedString.notExists(e2|e1 != e2 && e1.name == e2.name));

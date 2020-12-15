@@ -1,0 +1,86 @@
+<!-- Definition of the code generation workflow -->
+<workflow>
+	<property name="beautifierConfigFile" value="file:///C:\MyPrograms\eclipse-cpp-2019-12-R-win32-x86_64\eclipse\eclipse-workspace\EMFTraining\Inputs\BeautificationRules.xml" />
+
+	<!-- Standart setup routine-->	
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >
+    	<platformUri value=".."/>
+  	</bean>
+  	
+  	<!-- Set up EMF for standalone execution and maps to the Java classes, generated from the Ecore model -->
+	<bean class="org.eclipse.xtend.typesystem.emf.Setup" >
+	    <EPackageClass value="Translations.TranslationsPackage"/>
+	    <ExtensionMap>
+	    	<from value="xml"/>
+	    	<to value="Translations.util.TranslationsResourceFactoryImpl"/>
+	    </ExtensionMap>
+	</bean>
+
+	<!-- Instantiate metamodel -->
+	<bean id="mm_emf" class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"/>
+	
+	
+	<!-- Parses the EN translations xml file and store all objects in slot 'model' -->
+	<component class="org.eclipse.emf.mwe.utils.Reader">
+	    <uri value="${modelFileEn}" />
+	    <modelSlot value="model" />
+	</component>
+	
+	<component class="org.eclipse.xtend.check.CheckComponent">
+		<metaModel idRef="mm_emf" />
+		<checkFile value="checks::Rules"/>
+		<emfAllChildrenSlot value="model"/>
+    </component>
+	
+	<!--  generate code for EN translations-->
+	<component class="org.eclipse.xpand2.Generator">
+    	<metaModel idRef="mm_emf" />
+    	
+    	<!-- Call the Main function of the Main.xpt template-->
+    	<expand value="templates::MainTemplate::Main('en') FOR model" />
+    	
+    	<!-- Set the encoding -->
+    	<fileEncoding value="UTF-8"/>
+    	
+    	<!-- Files generated with this outlet will be beautified using the rules in the config file-->
+    	<outlet path="${outputPath}">
+    		<postprocessor class="org.eclipse.xpand.support.cdt.CppBeautifier" configFile="${beautifierConfigFile}"/>
+    	</outlet>
+    	
+    	<!-- Path to the folder where the files are generated. Used when lookig for protected regions-->
+    	<prSrcPaths value="${outputPath}"/>	
+  	</component>
+  	
+  	
+  	<!-- Parses the BG translations xml file and store all objects in slot 'model' -->
+	<component class="org.eclipse.emf.mwe.utils.Reader">
+	    <uri value="${modelFileBg}" />
+	    <modelSlot value="model" />
+	</component>
+	
+	<component class="org.eclipse.xtend.check.CheckComponent">
+		<metaModel idRef="mm_emf" />
+		<checkFile value="checks::Rules"/>
+		<emfAllChildrenSlot value="model"/>
+    </component>
+	
+	<!--  generate code for BG translations -->
+	<component class="org.eclipse.xpand2.Generator">
+    	<metaModel idRef="mm_emf" />
+    	
+    	<!-- Call the Main function of the Main.xpt template-->
+    	<expand value="templates::MainTemplate::Main('bg') FOR model" />
+    	
+    	<!-- Set the encoding -->
+    	<fileEncoding value="UTF-8"/>
+    	
+    	<!-- Files generated with this outlet will be beautified using the rules in the config file-->
+    	<outlet path="${outputPath}">
+    		<postprocessor class="org.eclipse.xpand.support.cdt.CppBeautifier" configFile="${beautifierConfigFile}"/>
+    	</outlet>
+    	
+    	<!-- Path to the folder where the files are generated. Used when looking for protected regions-->
+    	<prSrcPaths value="${outputPath}"/>	
+  	</component>
+	
+</workflow>

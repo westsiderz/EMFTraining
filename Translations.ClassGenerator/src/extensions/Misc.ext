@@ -1,0 +1,13 @@
+String getType(ecore::EAttribute attribute) : 
+	if(attribute.upperBound == -1) then
+		"std::vector< " + attribute.eType.name + " >"
+	else 
+		attribute.eType.name
+;
+
+String getType(ecore::EReference reference) : 
+	if(reference.upperBound == -1) then
+		"std::vector< " + reference.eType.name + " >"
+	else 
+		reference.eType.name
+;

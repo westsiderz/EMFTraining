@@ -1,7 +1,7 @@
 # root dir ignores
 */bin
-*/include/*
-*/src/*
+*src-gen/include/*
+*src-gen/src/*
 /.metadata/
 
 

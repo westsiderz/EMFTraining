@@ -1,0 +1,16 @@
+Void AddTranslation(String language, String translationId, String translation) :
+JAVA javaHelpers.Helper.AddTranslation(java.lang.String, java.lang.String, java.lang.String);
+
+List GetTranslationsForGivenLanguage(String language, String mainLanguage) :
+JAVA javaHelpers.Helper.GetTranslationsForGivenLanguage(java.lang.String, java.lang.String);
+
+String generateNamespaces(Boolean isOpening) : 
+	if(isOpening == true) then
+		"namespace XQ 
+		{
+			namespace GEN 
+			{"
+	else 
+			"} // GEN
+		} // XQ"
+;
