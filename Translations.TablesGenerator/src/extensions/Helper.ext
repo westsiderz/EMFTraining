@@ -4,7 +4,7 @@ JAVA javaHelpers.Helper.AddTranslation(java.lang.String, java.lang.String, java.
 List GetTranslationsForGivenLanguage(String language, String mainLanguage) :
 JAVA javaHelpers.Helper.GetTranslationsForGivenLanguage(java.lang.String, java.lang.String);
 
-String generateNamespaces(Boolean isOpening) : 
+String GenerateNamespaces(Boolean isOpening) : 
 	if(isOpening == true) then
 		"namespace XQ 
 		{
@@ -13,4 +13,8 @@ String generateNamespaces(Boolean isOpening) :
 	else 
 			"} // GEN
 		} // XQ"
+;
+
+String GetCurrentLanguage() : 
+	GLOBALVAR Language
 ;

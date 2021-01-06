@@ -1,0 +1,19 @@
+«DEFINE LazyEvalDemo FOR Object»
+	«LET (List[String]) {} AS includes»
+		«FILE "..."»
+		...
+		«EXPAND ImportIncludes FOREACH includes ONFILECLOSE»
+		...
+		«includes.add("someString")»
+		...
+		«ENDFILE»
+	«ENDLET»
+«ENDDEFINE»
+
+«DEFINE ImportIncludes FOR String»
+	#include "«this»"
+«ENDDEFINE»
+
+«DEFINE ThrowInvalidInputError FOR String»
+	«ERROR this + " is an invalid input"»	
+«ENDDEFINE»

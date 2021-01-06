@@ -37,7 +37,7 @@
     	<metaModel idRef="mm_emf" />
     	
     	<!-- Call the Main function of the Main.xpt template-->
-    	<expand value="templates::MainTemplate::Main('en') FOR model" />
+    	<expand value="templates::MainTemplate::Main FOR model" />
     	
     	<!-- Set the encoding -->
     	<fileEncoding value="UTF-8"/>
@@ -48,7 +48,9 @@
     	</outlet>
     	
     	<!-- Path to the folder where the files are generated. Used when lookig for protected regions-->
-    	<prSrcPaths value="${outputPath}"/>	
+    	<prSrcPaths value="${outputPath}"/>
+    	
+    	<globalVarDef name="Language" value="'en'"/>
   	</component>
   	
   	
@@ -69,7 +71,7 @@
     	<metaModel idRef="mm_emf" />
     	
     	<!-- Call the Main function of the Main.xpt template-->
-    	<expand value="templates::MainTemplate::Main('bg') FOR model" />
+    	<expand value="templates::MainTemplate::Main FOR model" />
     	
     	<!-- Set the encoding -->
     	<fileEncoding value="UTF-8"/>
@@ -80,7 +82,9 @@
     	</outlet>
     	
     	<!-- Path to the folder where the files are generated. Used when looking for protected regions-->
-    	<prSrcPaths value="${outputPath}"/>	
+    	<prSrcPaths value="${outputPath}"/>
+    	
+    	<globalVarDef name="Language" value="'bg'"/>
   	</component>
 	
 </workflow>

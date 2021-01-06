@@ -39,7 +39,7 @@ Updated By:    Ahmed Karaibrahimov
 		#include <unordered_map>
 		#include <string>
 		
-		«generateNamespaces(true)»
+		«GenerateNamespaces(true)»
 		
 		extern std::unordered_map<std::string, std::string> translations_«language»;
 		«PROTECT CSTART "/*" CEND "*/" ID language + "AdditionalVariablesDeclarations" DISABLE»
@@ -47,7 +47,7 @@ Updated By:    Ahmed Karaibrahimov
 			// Add ENABLED before START in order to activate this region
 		«ENDPROTECT»
 		
-		«generateNamespaces(false)»
+		«GenerateNamespaces(false)»
 		
 		#endif // XQ_GEN_TRANSLATIONS_«language.toUpperCase()»_HPP
 	«ENDFILE»

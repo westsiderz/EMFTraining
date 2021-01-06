@@ -10,8 +10,10 @@ Updated By:    Ahmed Karaibrahimov
 
 «IMPORT Translations»
 
-«DEFINE Main(String language) FOR DocumentRoot»
-	«EXPAND templates::HeaderTemplate::CreateHeaderFile(language) FOR this»
+«EXTENSION extensions::Helper»
+
+«DEFINE Main FOR DocumentRoot»
+	«EXPAND templates::HeaderTemplate::CreateHeaderFile(GetCurrentLanguage()) FOR this»
 		
-	«EXPAND templates::SourceTemplate::CreateSourceFile(language) FOR this»
+	«EXPAND templates::SourceTemplate::CreateSourceFile(GetCurrentLanguage()) FOR this»
 «ENDDEFINE»

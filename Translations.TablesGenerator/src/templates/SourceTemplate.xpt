@@ -35,7 +35,7 @@ Updated By:    Ahmed Karaibrahimov
 	
 		#include translations_«language».hpp
 		
-		«generateNamespaces(true)»
+		«GenerateNamespaces(true)»
 		
 		«FOREACH this.translations.translatedString AS translationString»
 			«AddTranslation((String)language, (String)translationString.name, (String)translationString.value)»
@@ -57,6 +57,6 @@ Updated By:    Ahmed Karaibrahimov
 			// Add ENABLED before START in order to activate this region
 		«ENDPROTECT»
 		
-		«generateNamespaces(false)»
+		«GenerateNamespaces(false)»
 	«ENDFILE»
 «ENDDEFINE»
